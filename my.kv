@@ -1,0 +1,88 @@
+WindowManager:
+    MainWindow:
+    Result_window:
+    BrowserWidow:
+
+
+<MainWindow>:
+    name:'main'
+    pass_frame:pass_frame
+
+    GridLayout:
+        cols:1
+        GridLayout:
+            rows: 2
+            Image:
+                id: pass_frame
+
+            GridLayout:
+                cols:4
+                size_hint: .4,.2
+                Button:
+                    #pos_hint: ('x', 'y', 'top', 'bottom', 'left', 'right')
+                    background_color: 0.80, 0.67, 0.77, 1
+                    text:'Face'
+                    on_press:
+                        root.build()
+
+                Button:
+                    text:'Browser'
+                    on_release:
+                        root.browser_show()
+
+                Button:
+                    text:'Images show'
+                    on_release:
+                        root.but_image_view()
+
+                Button:
+                    background_color: 0.58, 0.09, 0.40, 1
+                    text:'Next'
+                    on_press:
+                        root.pass_face()
+                        app.root.current='result'
+                        root.manager.transition.direction='left'
+
+
+<Result_window>:
+    classfi_name:classfi_name
+    name:'result'
+    GridLayout:
+        cols:1
+
+        GridLayout:
+            rows:1
+
+            Label:
+                text: 'Name'
+
+            TextInput:
+                id: classfi_name
+
+
+
+        GridLayout:
+            cols:2
+            size_hint: .5,.2
+            Button:
+                text:'Result'
+                background_color: 0.67, 0.20, 0.31, 1
+                on_press:root.image_classfi_fun()
+            Label:
+                text:''
+
+
+<BrowserWidow>:
+    BoxLayout:
+    FileChooserIconView:
+        id: filechooser
+
+    BoxLayout:
+        size_hint_y: None
+        height: 50
+        Button:
+            text: "Load"
+            on_release:
+                root.load(filechooser.selection)
+                #app.root.current = 'main'
+
